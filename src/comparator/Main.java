@@ -39,7 +39,7 @@ public class Main {
 			System.out.println(product);
 		}
 		
-		//classe anônima diretamente como parâmetro
+		//classe anônima que implementa a interface Comparator diretamente como parâmetro
 		list.sort(new Comparator<Product>() {
 			@Override
 			public int compare(Product o1, Product o2) {
