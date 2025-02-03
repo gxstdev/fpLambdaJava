@@ -6,10 +6,11 @@ import java.io.FileReader;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Main {
+public class E1 {
 	public static final File PATH_FILE = new File("C:\\temp\\produtos_tecnologia.csv");
 
 	public static void main(String[] args) {	
@@ -19,14 +20,14 @@ public class Main {
 				.reduce(new BigDecimal(0), (a, b) -> a.add(b))
 				.divide(new BigDecimal(getProducts().size()), 2, RoundingMode.HALF_UP);
 		
-		System.out.println("o preço médios do produtos é: " + avgPrice);	
+		System.out.println("o preço médio dos produtos é: " + avgPrice);	
 		
 		System.out.println("\nprodutos com preço menor que é a média: ");	
 		
-		//nomes em ordem descrecente 
+		//nomes em ordem --> decrescente 
 		//sorted
 		getProducts().stream().filter(p -> p.getPrice().compareTo(avgPrice) == -1)
-				.map(Product::getName).sorted().collect(Collectors.toList())
+				.map(Product::getName).sorted(Comparator.reverseOrder()).collect(Collectors.toList())
 				.forEach(System.out::println);;	
 	}
 
